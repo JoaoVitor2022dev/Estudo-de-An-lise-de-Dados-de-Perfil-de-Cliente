@@ -37,4 +37,19 @@ FROM sales.customers
 GROUP BY professional_status
 ORDER BY "Leads %"; 
 
+-- (Query 3) Faixa etária dos leads
+-- Colunas: faixa etária, leads (%)
+
+SELECT 
+      CASE 
+	      WHEN datediff('years', birth_date, current_date) <= 20 THEN '0-20'
+		  WHEN datediff('years', birth_date, current_date) < 40 THEN '20-40'
+		  WHEN datediff('years', birth_date, current_date) < 60 THEN '40-60'
+		  WHEN datediff('years', birth_date, current_date) < 80 THEN '60-80'
+		  ELSE '80+' END "Faixa etária", 
+		  COUNT(*)::float/(SELECT COUNT(*) FROM sales.customers) AS "leads (%)" 
+FROM sales.customers
+GROUP BY "Faixa etária"
+ORDER BY "Faixa etária" DESC;  
+
 
