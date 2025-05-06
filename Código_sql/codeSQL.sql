@@ -74,3 +74,30 @@ FROM sales.customers
 GROUP BY "Faixa Salarial", "Ordem"
 ORDER BY "Ordem" DESC;  
 
+
+-- (Query 5) Classificação dos veículos visitados
+-- Colunas: classificação do veículo, veículos visitados (#)
+-- Regra de negócio: Veículos novos tem até 2 anos e seminovos acima de 2 anos
+
+
+
+WITH classificacao_veiculos AS ( 
+    SELECT 
+        fun.visit_page_date, 
+        pro.model_year, 
+		EXTRACT('year' FROM current_date) - pro.model_year::int AS "Exemplo de idade do veículo", 
+        EXTRACT('year' FROM visit_page_date) - pro.model_year::int AS idade_veiculo,
+        CASE 
+            WHEN (EXTRACT('year' FROM visit_page_date) - pro.model_year::int) <= 2 THEN 'novo'
+            ELSE 'seminovo'
+        END AS "classificação do veículo"
+    FROM sales.funnel AS fun 
+    LEFT JOIN sales.products AS pro 
+         ON fun.product_id = pro.product_id
+)
+SELECT 
+     "classificação do veículo", 
+	 COUNT(*) AS "veículos visitados (#)"
+	 FROM classificacao_veiculos
+	 GROUP BY "classificação do veículo";
+
