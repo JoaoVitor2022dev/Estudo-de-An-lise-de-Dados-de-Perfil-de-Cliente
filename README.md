@@ -37,19 +37,6 @@ Analisar e identificar características importantes dos clientes, como:
   - Faixa salarial
   - Filtros dinâmicos
 
-## Estrutura do Projeto
-consultas_sql/
-- analise_idade.sql
-- analise_genero.sql
-- analise_status_profissional.sql
-- analise_faixa_salarial.sql
-
-dashboards_excel/
-- dashboard_geral.xlsx
-- dashboard_faixa_salarial.xlsx
-
-database/
-- script_criacao_tabelas.sql
 
 ## Como Executar
 1. Subir o banco de dados PostgreSQL.
