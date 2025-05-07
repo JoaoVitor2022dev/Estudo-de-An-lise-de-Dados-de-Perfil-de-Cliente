@@ -101,3 +101,7 @@ SELECT
 	 FROM classificacao_veiculos
 	 GROUP BY "classificação do veículo";
 
+
+
+
+
