@@ -1,5 +1,7 @@
 # Análise de Perfil de Clientes
 
+![image](https://github.com/user-attachments/assets/95c138a8-27a1-4f44-9b2e-f513f543d4e7)
+
 Este projeto realiza uma análise completa do perfil de clientes utilizando:
 - Banco de dados em PostgreSQL
 - Consultas SQL complexas
